@@ -93,6 +93,7 @@ We touched on performance earlier, how well do each of the above solutions perfo
 Given the above solutions with 10k rows:
 
 ---
+
 ### let's see the numbers
 
 | **operation**  | **time**   |
@@ -103,6 +104,7 @@ Given the above solutions with 10k rows:
 | map lookup     | 0.884 ms   |
 
 ---
+
 ### How about the time to create the Object/Map?
 
 | **operation** | **time** |
@@ -114,6 +116,7 @@ Given the above solutions with 10k rows:
 * estimated since SQL sort times will vary depending on db type, indexes created, etc.
 
 ---
+
 ### Totals
 
 | **operation**  | **time**   |
@@ -124,6 +127,7 @@ Given the above solutions with 10k rows:
 | map lookup     | 2.506 ms   |
 
 ---
+
 # Optimization
 
 Now that we have some numerical evidence, we can fine tune.
@@ -139,6 +143,7 @@ for (let i = 0, len = userIdArray.length; i < len; i++) {
 ```
 
 ---
+
 ### Results
 
 | **operation**          | **time** |
@@ -147,6 +152,7 @@ for (let i = 0, len = userIdArray.length; i < len; i++) {
 | object lookup for-loop | 0.374ms  |
 
 ---
+
 Final total time (object lookup for-loop): **1.707 ms**
 
 ---
@@ -154,3 +160,5 @@ Final total time (object lookup for-loop): **1.707 ms**
 # Conclusion
 
 It appears the plain Javascript constructs were the top performers for this test. When performance matters, i.e. when miliseconds count towards your browser render time, or when you are paying for execution time on a server, the types of considerations taken above can really pay off.
+
+---

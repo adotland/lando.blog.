@@ -37,3 +37,5 @@ public/feed.xml
 
 # my
 _
+public/sitemap*
+public/robots*
