@@ -5,6 +5,7 @@ export default {
     appId: process.env.CUSDIS_APP_ID,
     lang: 'en'
   },
+  // darkMode: true,
   footer: (
     <footer>
       <small>
