@@ -1,10 +1,10 @@
 const YEAR = new Date().getFullYear()
 
 export default {
-  cusdis: {
-    appId: process.env.CUSDIS_APP_ID,
-    lang: 'en'
-  },
+  // cusdis: {
+  //   appId: process.env.NEXT_PUBLIC_CUSDIS_APP_ID,
+  //   lang: 'en'
+  // },
   // darkMode: true,
   footer: (
     <footer>
