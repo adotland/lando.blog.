@@ -38,6 +38,12 @@ export default function Nextra({ Component, pageProps }) {
     }
   }, [router])
 
+  const meta = {
+    title: 'Lando.blog.',
+    description:
+      'Mostly Javascript, Node.js, Next.js, React.js, Whateversupnext.js',
+  }
+
   return (
     <>
       <Head>
@@ -54,6 +60,15 @@ export default function Nextra({ Component, pageProps }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        <meta name="description" content={meta.description} />
+        <meta property="og:site_name" content={meta.title} />
+
+        {/* <meta property="og:image" content={meta.image} /> */}
+        {/* <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@yourname" />
+<meta name="twitter:title" content={meta.title} />
+<meta name="twitter:description" content={meta.description} />
+<meta name="twitter:image" content={meta.image} /> */}
       </Head>
       <Component {...pageProps} />
     </>
