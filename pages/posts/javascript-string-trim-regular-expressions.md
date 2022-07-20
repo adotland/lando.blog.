@@ -40,7 +40,7 @@ Table 33 — Line Terminator Code Points [[4]](#sources)
 
 There are several implementations of the ES standard in use, but for the purposes of this post, we will use Node.JS's v8 implementation [[5]](#sources)
 
-Here's the code that runs when you call .trim() on a string in earlier versions of Node:
+Here's the code that runs when you call .trim() on a string in earlier versions of v8:
 
 ```c
 Handle<String> String::Trim(Handle<String> string, TrimMode mode) {
@@ -72,28 +72,28 @@ Handle<String> String::Trim(Handle<String> string, TrimMode mode) {
 which roughly translates in Javscript to:
 
 ```js
-  function faux_v8_trim(str, mode) {
-    const length = str.length;
-    let left = 0;
-    if (mode === TRIM || mode === TRIMSTART) {
-      while (left < length &&
-        isWhiteSpaceOrLineTerminator(str.charCodeAt(left))) {
-        left++;
-      }
+function faux_v8_trim(str, mode) {
+  const length = str.length;
+  let left = 0;
+  if (mode === TRIM || mode === TRIMSTART) {
+    while (left < length &&
+      isWhiteSpaceOrLineTerminator(str.charCodeAt(left))) {
+      left++;
     }
-
-    let right = length;
-    if (mode === TRIM || mode === TRIMEND) {
-      while (right > left &&
-        isWhiteSpaceOrLineTerminator(str.charCodeAt(right - 1))) {
-        right--;
-      }
-    }
-    return str.substring(left, right);
   }
+
+  let right = length;
+  if (mode === TRIM || mode === TRIMEND) {
+    while (right > left &&
+      isWhiteSpaceOrLineTerminator(str.charCodeAt(right - 1))) {
+      right--;
+    }
+  }
+  return str.substring(left, right);
+}
 ```
 
-The more recent version (Node 16 LTS) can be seen [here](https://chromium.googlesource.com/v8/v8/+/refs/heads/9.4.146/src/builtins/string-trim.tq). It still uses while loops, but adds the use of pointers :)
+The more recent version (Node 16 LTS) [[6]](#sources) can be seen [here](https://chromium.googlesource.com/v8/v8/+/refs/heads/9.4.146/src/builtins/string-trim.tq). It still uses while loops, but adds the use of pointers :)
 
 Indexes and pointers are powerful here because we know the string's full representation. Iterating only over necessary characters as opposed to searching the full string saves time and resources.
 
@@ -108,7 +108,7 @@ To many, regex seems like the obvious choice, especially since the metacharacter
 ```js
 basic_re = /^[\s]+|[\s]+$/g
 ```
-this will get flagged by some code linters due to regex operation precedence: "In cases where it is intended that the anchors only apply to one alternative each, adding (non-capturing) groups around the anchors and the parts that they apply to will make it explicit which parts are anchored and avoid readers misunderstanding the precedence or changing it because they mistakenly assume the precedence was not intended." [[6]](#sources)
+this will get flagged by some code linters due to regex operation precedence: "In cases where it is intended that the anchors only apply to one alternative each, adding (non-capturing) groups around the anchors and the parts that they apply to will make it explicit which parts are anchored and avoid readers misunderstanding the precedence or changing it because they mistakenly assume the precedence was not intended." [[7]](#sources)
 
 so we can adjust it to:
 ```js
@@ -128,22 +128,22 @@ There are other regex solutions that involve backtracking, but they are slow and
 
 ### Regex + Loop
 
-A solution proposed in "High Performance JavaScript" [[7]](#sources) is a hybrid solution to combine the strengths of regular expressions on the beginning of the string, and an indexed loop on the end of the string for a best of both worlds approach:
+A solution proposed in "High Performance JavaScript" [[8]](#sources) is a hybrid solution to combine the strengths of regular expressions on the beginning of the string, and an indexed loop on the end of the string for a best of both worlds approach:
 
 ```js
-  function non_re_trim(str) {
-    var start = 0,
-      end = str.length - 1,
-      ws =
-        ' \n\r\t\f\x0b\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u202f\u205f\u3000\ufeff'
-    while (ws.indexOf(str.charAt(start)) > -1) {
-      start++
-    }
-    while (end > start && ws.indexOf(str.charAt(end)) > -1) {
-      end--
-    }
-    return str.slice(start, end + 1)
+function non_re_trim(str) {
+  var start = 0,
+    end = str.length - 1,
+    ws =
+      ' \n\r\t\f\x0b\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u200b\u2028\u2029\u202f\u205f\u3000\ufeff'
+  while (ws.indexOf(str.charAt(start)) > -1) {
+    start++
   }
+  while (end > start && ws.indexOf(str.charAt(end)) > -1) {
+    end--
+  }
+  return str.slice(start, end + 1)
+}
 ```
 
 note the use of ```indexOf``` to search for whitespace and ```slice``` to render the final result
@@ -156,26 +156,26 @@ The main weakness of this version is long whitespace at the end of the string.
 
 native trim and its JS couterpart are by far the fastest, next is the non-regex solution, with the regexes coming in last
 
-| test                    | method        | ops/sec    | pct error |
-| ----------------------- | ------------- | ---------- | --------- |
-| space at both ends      | v8_trim       | 37,384,532 | ±2.40%    |
-| end space only          | v8_trim       | 30,705,964 | ±1.60%    |
-| space at beginning only | v8_trim       | 29,038,258 | ±4.34%    |
-| end space only          | faux_v8       | 16,094,768 | ±1.27%    |
-| space at beginning only | faux_v8       | 15,618,819 | ±1.69%    |
-| space at both ends      | faux_v8       | 14,026,258 | ±3.31%    |
-| space at beginning only | non_re_trim   | 7,448,794  | ±5.81%    |
-| end space only          | non_re_trim   | 7,273,079  | ±1.23%    |
-| space at both ends      | non_re_trim   | 7,073,627  | ±1.56%    |
-| space at beginning only | hybrid_trim   | 6,742,686  | ±0.94%    |
-| space at beginning only | noncap_group       | 5,207,593  | ±1.09%    |
-| space at both ends      | hybrid_trim   | 5,144,763  | ±1.35%    |
-| end space only          | basic_re      | 5,068,264  | ±1.62%    |
-| end space only          | noncap_group       | 5,038,307  | ±1.16%    |
-| space at beginning only | basic_re      | 4,947,144  | ±2.76%    |
-| end space only          | hybrid_trim   | 4,811,567  | ±3.62%    |
-| space at both ends      | noncap_group       | 4,693,936  | ±2.23%    |
-| space at both ends      | basic_re      | 4,658,159  | ±1.57%    |
+| test                    | method       | ops/sec    | pct error |
+| ----------------------- | ------------ | ---------- | --------- |
+| space at both ends      | v8_trim      | 37,384,532 | ±2.40%    |
+| end space only          | v8_trim      | 30,705,964 | ±1.60%    |
+| space at beginning only | v8_trim      | 29,038,258 | ±4.34%    |
+| end space only          | faux_v8      | 16,094,768 | ±1.27%    |
+| space at beginning only | faux_v8      | 15,618,819 | ±1.69%    |
+| space at both ends      | faux_v8      | 14,026,258 | ±3.31%    |
+| space at beginning only | non_re_trim  | 7,448,794  | ±5.81%    |
+| end space only          | non_re_trim  | 7,273,079  | ±1.23%    |
+| space at both ends      | non_re_trim  | 7,073,627  | ±1.56%    |
+| space at beginning only | hybrid_trim  | 6,742,686  | ±0.94%    |
+| space at beginning only | noncap_group | 5,207,593  | ±1.09%    |
+| space at both ends      | hybrid_trim  | 5,144,763  | ±1.35%    |
+| end space only          | basic_re     | 5,068,264  | ±1.62%    |
+| end space only          | noncap_group | 5,038,307  | ±1.16%    |
+| space at beginning only | basic_re     | 4,947,144  | ±2.76%    |
+| end space only          | hybrid_trim  | 4,811,567  | ±3.62%    |
+| space at both ends      | noncap_group | 4,693,936  | ±2.23%    |
+| space at both ends      | basic_re     | 4,658,159  | ±1.57%    |
 | space at beginning only | double_regex | 4,636,759  | ±1.42%    |
 | space at both ends      | double_regex | 4,247,326  | ±1.63%    |
 | end space only          | double_regex | 4,050,811  | ±2.53%    |
@@ -201,9 +201,11 @@ Sometimes the need arises for us to extend built-in functionality. Deep diving i
 
 [5] Chromium v8 https://chromium.googlesource.com/v8/v8/
 
-[6] sonarsource regex security hotspot rule - https://rules.sonarsource.com/java/tag/regex/RSPEC-5850
+[6] https://github.com/nodejs/node/blob/main/deps/v8/src/builtins/string-trim.tq
 
-[7] High Performance JavaScript [Book] - O'Reilly - https://www.oreilly.com/library/view/high-performance-javascript/9781449382308/
+[7] sonarsource regex security hotspot rule - https://rules.sonarsource.com/java/tag/regex/RSPEC-5850
+
+[8] High Performance JavaScript [Book] - O'Reilly - https://www.oreilly.com/library/view/high-performance-javascript/9781449382308/
 
 <div id="cusdis_thread"
   data-host="https://cusdis.com"
