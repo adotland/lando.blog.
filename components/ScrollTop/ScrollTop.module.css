@@ -1,0 +1,13 @@
+.scrollTop {
+  position: fixed;
+  width: 23px;
+  left: 90%;
+  bottom: 14px;
+  height: 35px;
+  font-size: 3rem;
+  z-index: 1;
+  cursor: pointer;
+  background: #e2e8f0;
+  padding: 3px;
+  border-radius: 9px;
+}
