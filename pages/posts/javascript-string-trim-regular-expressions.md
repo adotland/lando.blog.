@@ -207,15 +207,6 @@ Sometimes the need arises for us to extend built-in functionality. Deep diving i
 
 [8] High Performance JavaScript [Book] - O'Reilly - https://www.oreilly.com/library/view/high-performance-javascript/9781449382308/
 
-<div id="cusdis_thread"
-  data-host="https://cusdis.com"
-  data-app-id="b61075bd-6c04-4c68-9fc4-5da385810160"
-  data-page-id="/posts/javascript-convert-array-of-objects-to-map"
-  data-page-url="https://www.lando.blog/posts/javascript-convert-array-of-objects-to-map"
-  data-page-title="Maps in Javascript: Converting Arrays of Objects"
-  data-theme="light"
-></div>
-<script async src="https://cusdis.com/js/cusdis.es.js"></script>
 
 import ScrollTop from '../../components/ScrollTop'
 
