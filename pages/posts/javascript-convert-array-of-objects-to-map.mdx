@@ -8,7 +8,7 @@ author: lando
 
 # Array -> Map
 
-# Problem
+## Problem
 
 Say you have an array of objects, such as the result of a database query, and you want to find various objects from the list.
 
@@ -18,7 +18,7 @@ Often we find ourselves needing a particular peice of data at a given time from 
 
 A common example is when we may want data from a row in a database. Let's say we are creating a loop where we will need the age for every user. Our list of users is coming from one data source, and user age data is coming from a different source, and the two sources are not connected. In this case, we will have to match the user's name to the user's data manually, in code.
 
-# Solutions
+## Solutions
 
 We can query the database for all user ages, and let's give ourselves an easy way to match the data, an id column.
 
@@ -86,7 +86,7 @@ userIdArray.forEach((id) => {
 })
 ```
 
-# Performance
+## Performance
 
 We touched on performance earlier, how well do each of the above solutions perform?
 
@@ -128,7 +128,7 @@ Given the above solutions with 10k rows:
 
 ---
 
-# Optimization
+## Optimization
 
 Now that we have some numerical evidence, we can fine tune.
 
@@ -144,7 +144,7 @@ for (let i = 0, len = userIdArray.length; i < len; i++) {
 
 ---
 
-### Results
+## Results
 
 | **operation**          | **time** |
 | ---------------------- | -------- |
@@ -157,13 +157,13 @@ Final total time (object lookup for-loop): **1.707 ms**
 
 ---
 
-# Code
+## Code
 
 [View on StackBlitz](https://stackblitz.com/edit/node-cgq7q5?file=index.js)
 
 ---
 
-# Conclusion
+## Conclusion
 
 It appears the plain Javascript constructs were the top performers for this test. When performance matters, i.e. when miliseconds count towards your browser render time, or when you are paying for execution time on a server, the types of considerations taken above can really pay off.
 
@@ -178,3 +178,7 @@ It appears the plain Javascript constructs were the top performers for this test
   data-theme="light"
 ></div>
 <script async src="https://cusdis.com/js/cusdis.es.js"></script>
+
+import ScrollTop from '../../components/ScrollTop'
+
+<ScrollTop />
