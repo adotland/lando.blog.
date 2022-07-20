@@ -12,6 +12,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "@next/env": "^12.2.2",
     "gray-matter": "^4.0.2",
     "next": "latest",
     "next-sitemap": "^3.1.7",
@@ -21,6 +22,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rss": "^1.2.2"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4"
   },
   "prettier": {
     "arrowParens": "always",
