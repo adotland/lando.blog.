@@ -2,7 +2,7 @@
 title: "How to Trim a String in Javascript"
 date: "2022-07-19"
 description: "Let's explore different ways to trim strings in Javascript"
-tag: "web development, javascript, string, trim, v8" 
+tag: "node.js, javascript, string, trim, v8"
 author: "lando"
 ---
 
@@ -14,6 +14,7 @@ import Head from 'next/head';
   <meta name="keywords" content="web development, javascript, string, trim, v8" />
   <meta property="og:description" content="Let's explore different ways to trim strings in Javascript" />
   <meta property="og:title" content="How to Trim a String in Javascript" />
+  <link rel="canonical" href="https://www.lando.blog/posts/javascript-string-trim-regular-expressions" />
 </Head>
 
 # String.trim

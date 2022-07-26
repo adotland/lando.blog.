@@ -12,7 +12,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta name="robots" content="follow, index" />
+          <meta name="robots" content="follow, index, noarchive" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"

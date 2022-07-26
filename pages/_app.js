@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import useScrollRestoration from '../utils/hooks/useScrollRestoration';
+import { DefaultSeo } from 'next-seo';
 
 
 import '../styles/main.css'
@@ -62,7 +63,6 @@ export default function Nextra({ Component, pageProps }) {
         />
         <meta name="description" content={meta.description} />
         <meta property="og:site_name" content={meta.title} />
-
         {/* <meta property="og:image" content={meta.image} /> */}
         {/* <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@yourname" />
