@@ -8,8 +8,6 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import useScrollRestoration from '../utils/hooks/useScrollRestoration';
-import { DefaultSeo } from 'next-seo';
-
 
 import '../styles/main.css'
 import '../styles/nprogress.css'

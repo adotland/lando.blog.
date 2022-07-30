@@ -20,5 +20,7 @@ export default {
         }
       `}</style>
     </footer>
-  )
+  ),
+  navs: [
+  ]
 }
