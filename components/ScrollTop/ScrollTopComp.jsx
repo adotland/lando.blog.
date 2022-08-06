@@ -20,8 +20,6 @@ const ScrollTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
-      /* you can also use 'auto' behaviour
-         in place of 'smooth' */
     })
   }
 
@@ -33,7 +31,7 @@ const ScrollTop = () => {
       onClick={scrollToTop}
       style={{ display: visible ? 'inline' : 'none' }}
     >
-      <BsFillCaretUpFill size={'sm'}/>
+      <BsFillCaretUpFill size={'0.4em'}/>
     </div>
   )
 }
