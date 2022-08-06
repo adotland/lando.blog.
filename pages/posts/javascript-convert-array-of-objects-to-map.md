@@ -1,5 +1,5 @@
 ---
-title: "📍Maps in Javascript: Converting Arrays of Objects"
+title: "📍 Maps in Javascript: Converting Arrays of Objects"
 date: "2022-06-26"
 description: "Using Maps in Javascript to make object data lookup more efficient"
 tag: "web development, javascript, map, array, object"
@@ -7,6 +7,8 @@ author: "lando"
 ---
 
 import Head from 'next/head';
+import ScrollTop from '../../components/ScrollTop';
+import ReadingTime from '../../components/ReadingTime';
 
 <Head>
   <meta name="title" content="Maps in Javascript: Converting Arrays of Objects" />
@@ -19,17 +21,19 @@ import Head from 'next/head';
 
 # Array -> Map
 
-<img src="/images/hans-isaacson-NLfvLYxR-lA-unsplash.jpg" alt="Barber equipment" />
+<img src="/images/hans-isaacson-NLfvLYxR-lA-unsplash.jpg" alt="Map image" />
+
+<ReadingTime />
 
 ## Problem
 
 Say you have an array of objects, such as the result of a database query, and you want to find various objects from the list.
 
-Converting an array of objects into a single key-value object is an efficient way to do get this done.
+Converting an array of objects into a single key-value object is an efficient way to get this done.
 
 Often we find ourselves needing a particular peice of data at a given time from a data store.
 
-A common example is when we may want data from a row in a database. Let's say we are creating a loop where we will need the age for every user. Our list of users is coming from one data source, and user age data is coming from a different source, and the two sources are not connected. In this case, we will have to match the user's name to the user's data manually, in code.
+A common example is when we want data from a row in a database. Let's say we are creating a loop where we will need the age for every user. Our list of users is coming from one data source, and user age data is coming from a different source, and the two sources are not connected. In this case, we will have to match the user's name to the user's data manually in code.
 
 ## Solutions
 
@@ -182,6 +186,6 @@ It appears the plain Javascript constructs were the top performers for this test
 
 ---
 
-import ScrollTop from '../../components/ScrollTop'
+
 
 <ScrollTop />

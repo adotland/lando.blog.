@@ -1,5 +1,5 @@
 ---
-title: "✂️How to Trim a String in Javascript"
+title: "✂️ How to Trim a String in Javascript"
 date: "2022-07-19"
 description: "Let's explore different ways to trim strings in Javascript"
 tag: "node.js, javascript, string, trim, v8"
@@ -7,6 +7,8 @@ author: "lando"
 ---
 
 import Head from 'next/head';
+import ScrollTop from '../../components/ScrollTop';
+import ReadingTime from '../../components/ReadingTime';
 
 <Head>
   <meta name="title" content="How to Trim a String in Javascript" />
@@ -19,8 +21,9 @@ import Head from 'next/head';
 
 # String.trim
 
+<img src="/images/arthur-humeau-pu20JkUx--A-unsplash.jpg" alt="Barber equipment image" />
 
-<img src="/images/arthur-humeau-pu20JkUx--A-unsplash.jpg" alt="Barber equipment" />
+<ReadingTime />
 
 ## Problem
 Javscript provides the built-in method **trim**, and the newer **trimStart** / **trimEnd** methods [[1]](#sources). These native methods will do a quick job of trimming whitespace and line terminators from the start and end of a string. How does this functionality work, and how would we extend them to trim anything we want?
@@ -217,9 +220,6 @@ Sometimes the need arises for us to extend built-in functionality. Deep diving i
 [7] sonarsource regex security hotspot rule - https://rules.sonarsource.com/java/tag/regex/RSPEC-5850
 
 [8] High Performance JavaScript [Book] - O'Reilly - https://www.oreilly.com/library/view/high-performance-javascript/9781449382308/
-
-
-import ScrollTop from '../../components/ScrollTop'
 
 <ScrollTop />
 
