@@ -1,5 +1,5 @@
 ---
-title: "Maps in Javascript: Converting Arrays of Objects"
+title: "📍Maps in Javascript: Converting Arrays of Objects"
 date: "2022-06-26"
 description: "Using Maps in Javascript to make object data lookup more efficient"
 tag: "web development, javascript, map, array, object"
@@ -159,8 +159,8 @@ for (let i = 0, len = userIdArray.length; i < len; i++) {
 
 ## Results
 
-| **operation**          | **time** |
-| ---------------------- | -------- |
+| **operation**          | **time** | **memory** |
+| ---------------------- | -------- | ---------- |
 | object lookup forEach  | 0.548ms  |
 | object lookup for-loop | 0.374ms  |
 

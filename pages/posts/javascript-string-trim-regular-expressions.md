@@ -1,5 +1,5 @@
 ---
-title: "How to Trim a String in Javascript"
+title: "✂️How to Trim a String in Javascript"
 date: "2022-07-19"
 description: "Let's explore different ways to trim strings in Javascript"
 tag: "node.js, javascript, string, trim, v8"
