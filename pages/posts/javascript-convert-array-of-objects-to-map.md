@@ -17,6 +17,7 @@ import ReadingTime from '../../components/ReadingTime';
   <meta property="og:description" content="Using Maps in Javascript to make object data lookup more efficient" />
   <meta property="og:title" content="Maps in Javascript: Converting Arrays of Objects" />
   <link rel="canonical" href="https://www.lando.blog/posts/javascript-convert-array-of-objects-to-map" />
+  <title>Maps in Javascript: Converting Arrays of Objects - lando.blog</title>
 </Head>
 
 # Array -> Map

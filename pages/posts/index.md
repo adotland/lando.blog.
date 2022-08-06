@@ -8,6 +8,7 @@ import Head from 'next/head';
 
 <Head>
   <link rel="canonical" href="https://www.lando.blog/posts/" />
+  <title>Posts - lando.blog</title>
 </Head>
 
 # Posts

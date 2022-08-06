@@ -17,6 +17,7 @@ import ReadingTime from '../../components/ReadingTime';
   <meta property="og:description" content="Let's explore different ways to trim strings in Javascript" />
   <meta property="og:title" content="How to Trim a String in Javascript" />
   <link rel="canonical" href="https://www.lando.blog/posts/javascript-string-trim-regular-expressions" />
+  <title>How to Trim a String in Javascript - lando.blog</title>
 </Head>
 
 # String.trim
