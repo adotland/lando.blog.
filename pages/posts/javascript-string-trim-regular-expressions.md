@@ -215,7 +215,7 @@ Sometimes the need arises for us to extend built-in functionality. Deep diving i
 
 [5] Chromium v8 https://chromium.googlesource.com/v8/v8/
 
-[6] https://github.com/nodejs/node/blob/main/deps/v8/src/builtins/string-trim.tq
+[6] [v8 github](https://github.com/nodejs/node/blob/main/deps/v8/src/builtins/string-trim.tq)
 
 [7] sonarsource regex security hotspot rule - https://rules.sonarsource.com/java/tag/regex/RSPEC-5850
 
