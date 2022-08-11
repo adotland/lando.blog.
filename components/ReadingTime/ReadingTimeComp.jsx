@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import styles from './ReadingTimeComp.module.css'
+import {FaRegClock} from 'react-icons/fa';
 
 export default function ReadingTimeComp() {
 
@@ -20,6 +21,11 @@ export default function ReadingTimeComp() {
   }
 
   return (
-    <div className={styles.readingTimeText}><div>Reading time: <span ref={timeEl} onLoad={readingTime()} className={styles.readingTime}>0</span><span> min</span></div></div>
+    <div className={styles.rtWrap}>
+      <div className={styles.rtContent}>
+        <FaRegClock />
+        <div className={styles.rtText}>Reading time: <span ref={timeEl} onLoad={readingTime()} className={styles.rtTime}>0</span><span> min</span></div>
+      </div>
+    </div>
   )
 }

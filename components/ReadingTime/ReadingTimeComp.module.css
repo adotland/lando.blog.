@@ -1,10 +1,19 @@
-.readingTimeText {
+.rtWrap {
   color: #333;
   display: flex;
   justify-content: flex-end;
 }
 
-.readingTime {
+.rtContent {
+  display: flex;
+  align-items: center;
+}
+
+.rtText {
+  margin-left: 5px;
+}
+
+.rtTime {
   color: #000;
   margin-left: 5px;
   animation: fadeIn 5s;
