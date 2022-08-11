@@ -169,7 +169,7 @@ The main weakness of this version is long whitespace at the end of the string.
 
 **All tests run on Node 16 LTS, browser results will vary**
 
-native trim and its JS couterpart are by far the fastest, next is the non-regex solution, with the regexes coming in last
+Native trim and its JS couterpart are by far the fastest, next is the non-regex solution, with the regexes coming in last
 
 | test                    | method       | ops/sec    | pct error |
 | ----------------------- | ------------ | ---------- | --------- |
